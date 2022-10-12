@@ -42,7 +42,7 @@ export async function fetchCreditsFilmById(id) {
 
   try {
     const { data } = await axios.get(`${url}${id}/credits?api_key=${KEY}`);
-    return data.results;
+    return data.cast
   } catch (error) {
     console.error('Something wrong! Can not search films by ID' + error);
   }

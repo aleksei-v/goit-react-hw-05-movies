@@ -1,9 +1,10 @@
 import { Box } from "components/Box";
 import { fetchTrendFilms } from "services/fetchFilms";
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const ShowTrendingFilms = () => {
+    const location = useLocation()
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -26,9 +27,8 @@ export const ShowTrendingFilms = () => {
             <ul>
                 {movies.map(({ id, title }) =>
                     <li key={id}>
-                         <Link to={`${id}`}>{title}</Link>
+                        <Link to={`/movies/${id}`} state={{ from: location }}>{title}</Link>
                     </li>)}
-                
             </ul>
         </Box>
     );

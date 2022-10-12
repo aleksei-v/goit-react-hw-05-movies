@@ -3,6 +3,9 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import { Layout } from './Layout';
 import { ShowTrendingFilms } from '../pages/Home';
 import { MovieDetails } from './MovieDetails';
+import { ShowFilmCast } from './FilmCast';
+import { ShowFilmReviews } from './FilmReviews';
+import { Movies } from 'pages/Movies';
 export const App = () => {
 
 
@@ -13,14 +16,14 @@ export const App = () => {
           <Route index element={<Navigate to="home" />} />
           
           <Route path="home" element={<ShowTrendingFilms />} />
-          <Route path='home/:movieId' element={<MovieDetails/>} />   
-          <Route path="movies" element={<div>Movies</div>} >
-            
-          </Route>
-        
-        
+          
+          <Route path="movies" element={<Movies/>} />
+          <Route path='movies/:movieId' element={<MovieDetails />}>
+              <Route path="cast" element={<ShowFilmCast/>} />
+              <Route path='review' element={<ShowFilmReviews/>}/>    
+          </Route>           
 
-          {/* <Route path="*" element={<div>Error</div>} /> */}
+          <Route path="*" element={<Navigate to="home" />} />
           </Route>
       </Routes>
     
