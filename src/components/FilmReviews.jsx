@@ -1,29 +1,14 @@
-import { fetchReviewsFilmById } from "services/fetchFilms"
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-export const ShowFilmReviews = () => {
+import { fetchReviewsFilmById } from "services/fetchFilms";
+import { useFetchData } from "hooks/useFetchData";
 
-    const { movieId } = useParams();
+const ShowFilmReviews = () => {
 
-    const [movieReviews, setMovieReviews] = useState(null);
-
-    useEffect(() => {
-        const createFilmInfo = async () => {
-            try {
-                const film = await fetchReviewsFilmById(movieId);
-                setMovieReviews(film);
-            } catch (error) {
-                console.log(error)
-            };
-        };
-        createFilmInfo()
-    }, [movieId]);
-
+    const movieReviews = useFetchData(fetchReviewsFilmById);
 
     if (movieReviews === null) {
         return;
     };
-    console.log(movieReviews)
+    
     return (
         <>
             {movieReviews.length !== 0
@@ -43,3 +28,4 @@ export const ShowFilmReviews = () => {
     );
 };
 
+export default ShowFilmReviews;

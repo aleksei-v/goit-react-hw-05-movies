@@ -1,10 +1,11 @@
-import { SearchBox } from "components/SearchBox"
+import SearchBox from "components/SearchBox"
 import { useEffect, useState } from "react"
-import { useSearchParams, Link, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { fetchSearchFilms } from "services/fetchFilms";
+import { FilmList } from "components/FilmList";
 
-export const Movies = () => {
-    const location = useLocation()
+
+const Movies = () => {
     const [movies, setMovies] = useState();
     const [searchParams, setSearchParams] = useSearchParams();
     const searchParam = searchParams.get('query') ?? "";
@@ -35,13 +36,10 @@ export const Movies = () => {
    
     return (
         <>
-            <SearchBox value={searchParam} onSubmit={onSubmit} />
-            {movies && <ul>
-                {movies.map(({ id, title }) =>
-                    <li key={id}>
-                        <Link to={`/movies/${id}`} state={{ from: location }}>{title}</Link>
-                    </li>)}
-            </ul>}
+            <SearchBox onSubmit={onSubmit} />
+            <FilmList movies={movies} />  
         </>
     );
 };
+
+export default Movies;

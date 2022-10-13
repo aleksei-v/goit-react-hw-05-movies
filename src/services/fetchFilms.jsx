@@ -35,7 +35,7 @@ export async function fetchFilmById(id) {
   } catch (error) {
     console.error('Something wrong! Can not search films by ID' + error);
   }
-}
+};
 
 export async function fetchCreditsFilmById(id) {
   const url = 'https://api.themoviedb.org/3/movie/';
@@ -46,7 +46,7 @@ export async function fetchCreditsFilmById(id) {
   } catch (error) {
     console.error('Something wrong! Can not search films by ID' + error);
   }
-}
+};
 
 export async function fetchReviewsFilmById(id) {
   const url = 'https://api.themoviedb.org/3/movie/';
@@ -57,4 +57,4 @@ export async function fetchReviewsFilmById(id) {
   } catch (error) {
     console.error('Something wrong! Can not search films by ID' + error);
   }
-}
+};
