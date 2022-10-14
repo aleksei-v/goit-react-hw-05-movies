@@ -36,7 +36,7 @@ const Movies = () => {
    
     return (
         <>
-            <SearchBox onSubmit={onSubmit} />
+            <SearchBox onSubmit={onSubmit} query={searchParam} />
             <FilmList movies={movies} />  
         </>
     );

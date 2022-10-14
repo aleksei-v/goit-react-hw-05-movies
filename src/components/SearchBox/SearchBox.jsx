@@ -2,18 +2,18 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import { SearchForm, SearchFormInput, SearchFormButton } from "./SearchBox.styled";
 
-const SearchBox = ({ onSubmit }) => {
+const SearchBox = ({ onSubmit, query }) => {
 
     const [film, setFilm] = useState('');
 
     const handleSearch = evt => {
-        setFilm(evt.currentTarget.value)
+        setFilm(evt.currentTarget.value);
     };
 
     const onSubmitSearch = evt => {
         evt.preventDefault();
 
-        onSubmit(film)
+        onSubmit(film);
     };
     
     return (
@@ -21,6 +21,7 @@ const SearchBox = ({ onSubmit }) => {
             <SearchForm onSubmit={onSubmitSearch}>
                 <SearchFormInput type="text"
                     onChange={handleSearch}
+                    defaultValue={query}
                 />
                 <SearchFormButton type="submit">Search</SearchFormButton>
             </SearchForm>
@@ -29,7 +30,8 @@ const SearchBox = ({ onSubmit }) => {
 };
 
 SearchBox.propTypes = {
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired,
 };
 
 export default SearchBox;
